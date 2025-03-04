@@ -1,0 +1,49 @@
+<!-- Black Header -->
+<!-- <header class="bg-black text-white py-3 px-4 flex justify-between items-center">
+    <img src="../../public/assets/Logo.png" alt="AeroSign Logo" class="h-6">
+    <!-- <h1 class="text-lg font-semibold">AeroSign</h1> -->
+    <!-- <button (click)="logout()" class="bg-red-500 px-4 py-2 rounded">Logout</button>
+</header> -->
+
+<app-nav [currentPage]="activeComponentTitle"></app-nav>
+<div>
+<div class="container mx-auto px-6 mt-8 py-3">
+  <div *ngIf="!activeComponent">
+    <h2 class="text-center text-2xl font-semibold mb-6">Welcome to AeroSign</h2>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Admin Home Card -->
+      <div *ngIf="isAdmin" (click)="isAdminView = true"
+           class="p-6 bg-blue-500 text-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition flex items-center">
+        <!-- <i class="fas fa-user-shield text-2xl mr-4"></i> -->
+        <i class="bi bi-person-gear text-2xl mr-4"></i>
+        <div>
+          <h3 class="text-lg font-semibold">Admin Home</h3>
+          <p>Manage Users, Security, and Organization Settings</p>
+        </div>
+      </div>
+      <!-- User Cards -->
+      <div *ngFor="let card of userCards" (click)="setActiveComponent(card.component)"
+           class="p-6 bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition flex items-center">
+        <i [class]="card.icon" class="text-2xl mr-4"></i>
+        <div>
+          <h3 class="text-lg font-semibold">{{ card.title }}</h3>
+          <p class="text-gray-600">{{ card.description }}</p>
+        </div>
+      </div>
+
+      
+    </div> 
+  </div>
+</div>
+  <!-- Dynamic Component Load (Show Only if a Card is Clicked) -->
+
+<div *ngIf="activeComponent">
+  <button (click)="goBack()" class="bg-white-300 px-2 py-1 rounded mb-4">← Back</button>
+  <div class="container mx-auto px-6 mt-8">
+    <ng-container *ngComponentOutlet="activeComponent"></ng-container>
+  </div>
+</div>
+</div>
+
+  
