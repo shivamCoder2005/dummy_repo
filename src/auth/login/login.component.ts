@@ -3,13 +3,14 @@ import { FormsModule } from '@angular/forms'; // <-- Import FormsModule
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { NavComponent } from '../../app/nav/nav.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,  // <-- Mark component as standalone
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [FormsModule, CommonModule] // <-- Add FormsModule here
+  imports: [FormsModule, CommonModule, NavComponent] // <-- Add FormsModule here
 })
 
 export class LoginComponent {
