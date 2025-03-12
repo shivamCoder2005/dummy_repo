@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,16 +9,3 @@ import { Component } from '@angular/core';
 export class AdminComponent {
 
 }
-=======
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-admin',
-  imports: [],
-  templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css'
-})
-export class AdminComponent {
-
-}
->>>>>>> d0a8cfe (test 1)

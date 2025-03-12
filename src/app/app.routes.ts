@@ -18,6 +18,7 @@ const authGuard: CanActivateFn = (route, state) => {
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
-  { path: '', redirectTo: '/login' , pathMatch: 'full'}, // Redirect unknown routes to login
+  { path: 'createEnvelope', component: CreateEnvelopeComponent },
+  { path: '', redirectTo: '/home' , pathMatch: 'full'}, // Redirect unknown routes to login
   { path: '**', redirectTo: '/login' } // Redirect unknown routes to login
 ]

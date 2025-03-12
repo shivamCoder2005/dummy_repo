@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,16 +9,3 @@ import { Component } from '@angular/core';
 export class BillingComponent {
 
 }
-=======
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-billing',
-  imports: [],
-  templateUrl: './billing.component.html',
-  styleUrl: './billing.component.css'
-})
-export class BillingComponent {
-
-}
->>>>>>> d0a8cfe (test 1)

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,16 +9,3 @@ import { Component } from '@angular/core';
 export class SecurityComponent {
 
 }
-=======
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-security',
-  imports: [],
-  templateUrl: './security.component.html',
-  styleUrl: './security.component.css'
-})
-export class SecurityComponent {
-
-}
->>>>>>> d0a8cfe (test 1)
