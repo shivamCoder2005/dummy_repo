@@ -13,7 +13,7 @@ export class AuthService {
   private baseUrl = this.getBaseUrl + '/api/auth';  // Update as needed
 
   constructor(private storageHelper: StorageHelper, private http: HttpClient, private constants: Constants) {}
-
+  //Test
   getBaseUrl (): String {
     return this.constants.getBaseURL();
   }
