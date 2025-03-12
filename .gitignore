@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Logs
 logs
 *.log
@@ -130,7 +130,11 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-=======
+
+
+#cache files
+.angular/
+
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
@@ -173,4 +177,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
->>>>>>> d0a8cfe (test 1)
+
