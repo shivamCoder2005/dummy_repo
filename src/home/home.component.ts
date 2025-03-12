@@ -20,7 +20,7 @@ import { NavComponent } from '../app/nav/nav.component'
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [ CommonModule, NavComponent]
+  imports: [CommonModule, NavComponent]
 })
 export class HomeComponent implements OnInit {
   activeComponent: Type<any> | null = null;
@@ -29,26 +29,26 @@ export class HomeComponent implements OnInit {
   isAdmin = false;
   isAdminView = false;
 
-  
+
 
   // Define Cards
   userCards = [
-    { title: 'Create Envelope', description: 'Start a new document signing request.', component: CreateEnvelopeComponent, icon: 'fas fa-file-signature' },
-    { title: 'Manage Envelopes', description: 'View and manage sent envelopes.', component: ManageEnvelopesComponent, icon: 'fas fa-folder-open' },
-    { title: 'Templates', description: 'Save document templates for quick access.', component: TemplatesComponent, icon: 'fas fa-clone' },
+    { title: 'Create Envelope', description: 'Start a new document signing request.', icon: 'fas fa-file-signature', url: "/createEnvelope" },
+    { title: 'Manage Envelopes', description: 'View and manage sent envelopes.', icon: 'fas fa-folder-open',url: "/createEnvelope"},
+    { title: 'Templates', description: 'Save document templates for quick access.', icon: 'fas fa-clone',url: "/createEnvelope"},
   ];
 
   adminCards = [
-    { title: 'User Management', description: 'Manage organization users & roles.', component: UserManagementComponent, icon: 'fas fa-users-cog' },
-    { title: 'Security & Compliance', description: 'Configure security policies & MFA.', component: SecurityComponent, icon: 'fas fa-lock' },
-    { title: 'Billing & Subscription', description: 'Manage payment plans & invoices.', component: BillingComponent, icon: 'fas fa-credit-card' }
+    { title: 'User Management', description: 'Manage organization users & roles.', icon: 'fas fa-users-cog' },
+    { title: 'Security & Compliance', description: 'Configure security policies & MFA.', icon: 'fas fa-lock' },
+    { title: 'Billing & Subscription', description: 'Manage payment plans & invoices.', icon: 'fas fa-credit-card' }
   ];
 
   constructor(private authService: AuthService, private router: Router) {
 
   }
 
-    
+
   ngOnInit(): void {
     //  Subscribe to the Observable and store userType
     this.authService.getUserType().subscribe({
@@ -71,25 +71,23 @@ export class HomeComponent implements OnInit {
   }
 
   // Set Active Component when a card is clicked
-  setActiveComponent(component: Type<any>) {
-    this.activeComponent = component;
-    this.activeComponentTitle = this.getComponentTitle(component);
-    console.log('Current Component - ' + this.activeComponentTitle);
+  setActiveComponent(url: string) {
+    this.router.navigate([url]);
   }
 
-  getComponentTitle(component: any): string {
-    const titles: { [key: string]: string } = {
-      CreateEnvelopeComponent: 'Create Envelope',
-      ManageEnvelopesComponent: 'Manage Envelopes',
-      TemplatesComponent: 'Templates'
-    };
-    return titles[component.constructor.name] || '';
-  }
+  // getComponentTitle(component: any): string {
+  //   const titles: { [key: string]: string } = {
+  //     CreateEnvelopeComponent: 'Create Envelope',
+  //     ManageEnvelopesComponent: 'Manage Envelopes',
+  //     TemplatesComponent: 'Templates'
+  //   };
+  //   return titles[component.constructor.name] || '';
+  // }
 
-  // Back to Home (Restore Cards View)
-  goBack() {
-    this.activeComponent = null;
-  }
+  // // Back to Home (Restore Cards View)
+  // goBack() {
+  //   this.activeComponent = null;
+  // }
 }
 =======
 import { Component, ViewContainerRef, ComponentFactoryResolver, Type, OnInit } from '@angular/core';

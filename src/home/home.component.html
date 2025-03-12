@@ -2,9 +2,9 @@
 <!-- Black Header -->
 <!-- <header class="bg-black text-white py-3 px-4 flex justify-between items-center">
     <img src="../../public/assets/Logo.png" alt="AeroSign Logo" class="h-6">
-    <!-- <h1 class="text-lg font-semibold">AeroSign</h1> -->
-    <!-- <button (click)="logout()" class="bg-red-500 px-4 py-2 rounded">Logout</button>
-</header> -->
+    <h1 class="text-lg font-semibold">AeroSign</h1>
+    <button (click)="logout()" class="bg-red-500 px-4 py-2 rounded">Logout</button> -->
+<!-- </header> --> 
 
 <app-nav [currentPage]="activeComponentTitle"></app-nav>
 <div>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <!-- User Cards -->
-      <div *ngFor="let card of userCards" (click)="setActiveComponent(card.component)"
+      <div *ngFor="let card of userCards" (click)="setActiveComponent(card.url)"
            class="p-6 bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition flex items-center">
         <i [class]="card.icon" class="text-2xl mr-4"></i>
         <div>
@@ -39,13 +39,13 @@
 </div>
   <!-- Dynamic Component Load (Show Only if a Card is Clicked) -->
 
-<div *ngIf="activeComponent">
+<!-- <div *ngIf="activeComponent">
   <button (click)="goBack()" class="bg-white-300 px-2 py-1 rounded mb-4">← Back</button>
   <div class="container mx-auto px-6 mt-8">
     <ng-container *ngComponentOutlet="activeComponent"></ng-container>
   </div>
-</div>
-</div>
+</div> -->
+<!-- </div> -->
 
 =======
 <!-- Black Header -->

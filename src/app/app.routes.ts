@@ -5,6 +5,7 @@ import { Router } from '@angular/router';  // ✅ Import Router
 import { LoginComponent } from './../auth/login/login.component';
 import { HomeComponent } from '../home/home.component';
 import { AuthService } from '../services/auth.service';
+import { CreateEnvelopeComponent } from '../features/create-envelope/create-envelope.component';
 
 
 const authGuard: CanActivateFn = (route, state) => {
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: '', redirectTo: '/login' , pathMatch: 'full'}, // Redirect unknown routes to login
   { path: '**', redirectTo: '/login' } // Redirect unknown routes to login
   { path: 'home', component: HomeComponent },
+  { path: 'createEnvelope', component: CreateEnvelopeComponent },
   { path: '', redirectTo: '/login' , pathMatch: 'full'} // Redirect unknown routes to login
 import { Routes, CanActivateFn } from '@angular/router';
 import { inject } from '@angular/core';
