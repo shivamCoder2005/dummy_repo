@@ -1,26 +1,60 @@
 <nav class="navbar bg-[#3f61f8] w-full h-[60px] navbar-expand-lg fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand text-[#FFFCFC] font-inter font-bold pl-[31px]" href="#">Aero<span class="bg-[#FFFCFC] w-[64px] h-[30px] text-[#3f61f8]">Sign</span> <span class="font-semibold text-lg text-gray-700">{{ currentPage }}</span></a>
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand text-[#FFFCFC] font-inter font-bold pl-[31px]"
+      href="#"
+      >Aero<span class="bg-[#FFFCFC] w-[64px] h-[30px] text-[#3f61f8]"
+        >Sign</span
+      >
+      <span class="font-semibold text-lg text-gray-700">{{
+        currentPage
+      }}</span></a
+    >
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button> -->
-      <div class="font-inter text-[#FFFCFC] pr-[30px] font-semibold text-4xl leading-none tracking-normal">?</div>
-      <!-- <div class="" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-circle  text-3xl mr-1"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-star" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">
-                <h3 class="lead">{{ user?.username }}</h3><br>
+
+    @if(user) {
+    <div class="" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="bi bi-person-circle text-3xl mr-1"></i>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end dropdown-menu-lg-star"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <li>
+              <a class="dropdown-item" href="#">
+                <h3 class="lead">{{ user?.username }}</h3>
+                <br />
                 <h6 class="lead test-muted">{{ user?.email }}</h6>
-              </a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item text-danger" href="#" (click)="logout()">Signout</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div> -->
+              </a>
+            </li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <a class="dropdown-item text-danger" href="#" (click)="logout()"
+                >Signout</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
-  </nav>
+    } @else {
+    <div
+      class="font-inter text-[#FFFCFC] pr-[30px] font-semibold text-4xl leading-none tracking-normal"
+    >
+      ?
+    </div>
+    }
+  </div>
+</nav>
