@@ -1,12 +1,12 @@
-<nav class="navbar bg-[#3f61f8] w-full h-[60px] navbar-expand-lg fixed-top">
+<nav class="flex flex-wrap navbar bg-[#3f61f8] w-full h-[60px] justify-between navbar-expand-lg fixed-top">
   <div class="container-fluid">
     <a
-      class="navbar-brand text-[#FFFCFC] font-inter font-bold pl-[31px]"
+      class="navbar-brand pointer-events-none text-[#FFFCFC] font-inter font-bold pl-[31px]"
       href="#"
-      >Aero<span class="bg-[#FFFCFC] w-[64px] h-[30px] text-[#3f61f8]"
+      >Aero<span class="bg-[#FFFCFC] border-1 rounded-md w-[64px] h-[30px] text-[#3f61f8]"
         >Sign</span
       >
-      <span class="font-semibold text-lg text-gray-700">{{
+      <span class="font-inter font-bold text-lg text-black">&nbsp;{{
         currentPage
       }}</span></a
     >
@@ -50,11 +50,11 @@
       </ul>
     </div>
     } @else {
-    <div
-      class="font-inter text-[#FFFCFC] pr-[30px] font-semibold text-4xl leading-none tracking-normal"
+      <a
+      class="text-[#FFFCFC] pr-[30px] font-semibold text-4xl leading-none tracking-normal truncate"
     >
       ?
-    </div>
+    </a>
     }
   </div>
 </nav>
