@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
@@ -77,7 +77,7 @@ export class AuthService {
     this.storageHelper.removeItem('token');
   }
 }
-=======
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
@@ -92,18 +92,15 @@ export class AuthService {
   private baseUrl = '';  // Update as needed
 
   constructor(private storageHelper: StorageHelper, private http: HttpClient, private constants: Constants) {
-    // this.baseUrl = `${this.getBaseUrl}/api/auth`;
-    this.baseUrl = `/api/auth`;
-    // http://localhost:5000/api/auth/
+    this.baseUrl = this.getBaseUrl() + '/api/auth'
   }
 
-  // getBaseUrl (): String {
-  //   return this.constants.getBaseURL();
-  // }
+  getBaseUrl (): String {
+    return this.constants.getBaseURL();
+  }
 
   // Login Function (Sends request to backend)
   login(email: string, password: string): Observable<any> {
-    console.log(`URL - ${this.baseUrl}/token`);
     return this.http.post(`${this.baseUrl}/token`, { email, password });
   }
 
@@ -161,4 +158,4 @@ export class AuthService {
     this.storageHelper.removeItem('token');
   }
 }
->>>>>>> d0a8cfe (test 1)
+
