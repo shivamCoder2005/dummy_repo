@@ -17,7 +17,11 @@ export class LoginComponent {
   email = '';
   password = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+    if(this.authService.getToken()) {
+      this.router.navigate(['/home']);
+    }
+  }
 
   onSubmit() {
     this.authService.login(this.email, this.password).subscribe((res: any) => {
