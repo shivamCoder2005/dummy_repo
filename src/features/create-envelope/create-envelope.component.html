@@ -1,91 +1,110 @@
-<!-- Sticky Navbar -->
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top px-4">
-  <a class="navbar-brand" href="#">AeroSign - Create Envelope</a>
-</nav> -->
+<app-nav></app-nav>
+<div class="h-screen flex flex-col">
+  <!-- Breadcrumbs Section -->
+  <nav class="breadcrumb bg-light px-4 py-2 border-b w-full mt-20">
+    <a href="#/home" class="breadcrumb-item">Home</a>
+    <span class="breadcrumb-item active">Create Envelope</span>
+  </nav>
 
-<!-- Main Container with Grid Layout -->
-<div class="container-fluid pt-5 mt-3">
-  <div class="row g-3"> 
-    <!-- Top Left: Drag & Drop + Document Upload -->
-    <div class="col-md-6">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h5 class="card-title text-muted">Upload Documents</h5>
+  <div class="flex flex-grow">
+    <!-- Left Navigation (Sticky) -->
+    <div class="w-1/10 h-full bg-white border-r p-4 shadow-md left-0 fixed">
+      <div class="flex flex-col items-center space-y-4">
+        <i class="bi bi-person-circle text-2xl"></i>
+        <i class="bi bi-buildings text-2xl"></i>
+        <i class="bi bi-people text-2xl"></i>
+      </div>
+    </div>
+  </div>
 
-          <!-- Drag & Drop Upload Area -->
-          <div class="border border-dashed text-center py-4 bg-light rounded"
-               (drop)="onDrop($event)" (dragover)="onDragOver($event)">
-            <p class="text-muted">Drag & Drop files here or click below</p>
+  <!-- contianer -->
+  <div class="flex-grow overflow-y-auto p-6 space-y-6" style="margin-left: 5%;margin-bottom: 5%;">
+    <!-- Document Upload Section -->
+    <div class="border rounded-lg shadow-md bg-white relative">
+      <div class="absolute left-0 top-0 bottom-0 w-2 bg-blue-500"></div>
+      <div class="grid grid-cols-[4fr_6fr] grid-rows-auto">
+        <!-- Drag & Drop Upload -->
+        <div class=" p-4 border-r" (dragover)="onDragOver($event)" (drop)="onFileDrop($event)">
+          <div
+            class="border-dashed border-2 p-6 text-center text-gray-500">
+            Drag & Drop files here<br>or<br>
+            <input type="file" class="form-control mt-2 border-solid border-1 border-[#817D7D]"
+              (change)="onFileSelected($event)">
           </div>
-
-          <input type="file" class="form-control mt-2" (change)="uploadFile($event)">
-          <small class="text-muted">Supported: PDF, DOCX, TXT</small>
+        </div>
+        <!-- Uploaded Documents List -->
+        <div class="p-4">
+          <div *ngFor="let doc of envelopeData.documents; let i = index" class="flex flex-row justify-between mb-2">
+            <p class="border w-[95%] flex items-center rounded-md pl-2">{{ doc.name }}
+            </p>
+            <button class="text-red-500 text-[25px]" (click)="removeFile(i)">&times;</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Top Right: Envelope Details -->
-    <div class="col-md-6">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h5 class="card-title text-muted">Envelope Details</h5>
-
-          <div class="mb-3">
-            <label class="form-label">Envelope Name</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)]="envelope.name">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Message (Optional)</label>
-            <textarea class="form-control form-control-sm" [(ngModel)]="envelope.message"></textarea>
-          </div>
+    <!-- Envelope Details Section -->
+    <div class="border rounded-lg shadow-md bg-white relative">
+      <div class="absolute left-0 top-0 bottom-0 w-2 bg-blue-500"></div>
+      <div class="flex">
+        <div class="w-1/2 p-4 border-r">
+          <input type="text" class="form-control mb-3" placeholder="Envelope Title">
+          <textarea class="form-control" placeholder="Envelope Description"></textarea>
         </div>
-      </div>
-    </div>
-
-    <!-- Bottom Left: Document List -->
-    <div class="col-md-6">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h5 class="card-title text-muted">Uploaded Documents</h5>
-          <ul class="list-group small">
-            <li *ngFor="let doc of uploadedDocs; let i = index"
-                class="list-group-item d-flex justify-content-between">
-              {{ doc.name }}
-              <button class="btn btn-sm btn-danger" (click)="removeDoc(i)">❌</button>
-            </li>
+        <div class="w-1/2 p-4">
+          <h5 class="font-semibold">Custom Fields</h5>
+          <ul class="list-group">
+            <li class="list-group-item">Field 1</li>
+            <li class="list-group-item">Field 2</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- Bottom Right: Recipients -->
-    <div class="col-md-6">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h5 class="card-title text-muted">Recipients</h5>
-
-          <div *ngFor="let recipient of recipients; let i = index" class="mb-2">
-            <div class="input-group">
-              <input type="text" class="form-control form-control-sm" placeholder="Name" [(ngModel)]="recipient.name">
-              <input type="email" class="form-control form-control-sm" placeholder="Email" [(ngModel)]="recipient.email">
-              <select class="form-select form-select-sm" [(ngModel)]="recipient.role">
-                <option value="signer">Signer</option>
-                <option value="viewer">Viewer</option>
-              </select>
-              <button class="btn btn-danger btn-sm" (click)="removeRecipient(i)">❌</button>
-            </div>
-          </div>
-
-          <button class="btn btn-primary btn-sm w-100 mt-2" (click)="addRecipient()">+ Add Recipient</button>
-        </div>
+    <!-- Recipient Information Section -->
+    <div class="border rounded-lg shadow-md bg-white relative">
+      <div class="absolute left-0 top-0 bottom-0 w-2 bg-blue-500"></div>
+      <div class="p-4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Routing Order</th>
+              <th>Type</th>
+              <th>Recipient Type</th>
+              <th>Details</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let recipient of envelopeData.recipients; let i = index" >
+              <td>{{ recipient.routingOrder }}</td>
+              <td>
+                <select class="form-control" [(ngModel)]="recipient.type">
+                  <option>Email</option>
+                  <option>Contact</option>
+                  <option>User</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-control" [(ngModel)]="recipient.recipientType">
+                  <option>Signer</option>
+                  <option>Carbon Copy</option>
+                  <option>Approval</option>
+                </select>
+              </td>
+              <td><input type="text" class="form-control" [(ngModel)]="recipient.value"></td>
+              
+              <td class="p-2 flex justify-top"><button class="text-red-500 font-bold text-[30px]" (click)="removeRecipient(i)">&times;</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-outline-primary no-radius" (click)="addRecipient()">+ Add Recipient</button>
       </div>
     </div>
   </div>
-
-  <!-- Action Buttons -->
-  <div class="text-end mt-3">
-    <button class="btn btn-secondary" (click)="saveDraft()">Save Draft</button>
-    <button class="btn btn-success" (click)="sendEnvelope()">Send Envelope</button>
-  </div>
+  <footer class="w-full bg-light p-2 border-t flex justify-end fixed bottom-0 left-0 right-0">
+    <button type="button" class="btn btn-outline-dark mr-1 no-radius">Cancel</button>
+    <button type="button" class="btn btn-outline-dark mr-1 no-radius">Save Draft</button>
+    <button type="button" class="btn btn-outline-primary no-radius">Next</button>
+</footer>
 </div>

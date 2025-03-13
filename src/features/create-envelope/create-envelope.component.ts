@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NavComponent } from '../../app/nav/nav.component';
 
 interface Recipient {
-  name: string;
+  type: string;
   email: string;
   role: string;
+  contact: string;
 }
 
 interface Document {
@@ -17,57 +19,73 @@ interface Document {
   selector: 'app-create-envelope',
   templateUrl: './create-envelope.component.html',
   styleUrls: ['./create-envelope.component.css'],
-  imports: [ CommonModule, FormsModule ]
+  imports: [CommonModule, FormsModule, NavComponent]
 })
 export class CreateEnvelopeComponent {
-  envelope = { name: '', message: '' };
-  recipients: Recipient[] = [{ name: '', email: '', role: 'signer' }];
-  uploadedDocs: Document[] = [];
-
-  // Handle File Upload (Regular Input)
-  uploadFile(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.uploadedDocs.push({ name: file.name, file });
-    }
+  envelopeData = {
+    title: '',
+    description: '',
+    documents: [] as { name: string, file: File }[],
+    customFields: [] as string[],
+    recipients: [] as { routingOrder: number, type: string, recipientType: string, value: string }[],
+  };
+ 
+  // File Upload
+  onFileSelected(event: any) {
+    this.handleFileUpload(event.target.files);
   }
-
-  // Handle Drag & Drop Upload
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    if (event.dataTransfer?.files.length) {
-      const file = event.dataTransfer.files[0];
-      this.uploadedDocs.push({ name: file.name, file });
-    }
-  }
-
-  // Prevent Default Drag Behavior
+ 
   onDragOver(event: DragEvent) {
     event.preventDefault();
   }
-
-  // Remove Uploaded Document
-  removeDoc(index: number) {
-    this.uploadedDocs.splice(index, 1);
+ 
+  onFileDrop(event: DragEvent) {
+    event.preventDefault();
+    if (event.dataTransfer?.files.length) {
+      this.handleFileUpload(event.dataTransfer.files);
+    }
   }
-
-  // Add New Recipient
+ 
+  private handleFileUpload(files: FileList) {
+    for (let i = 0; i < files.length; i++) {
+      this.envelopeData.documents.push({ name: files[i].name, file: files[i] });
+    }
+  }
+ 
+  removeFile(index: number) {
+    this.envelopeData.documents.splice(index, 1);
+  }
+ 
+  // Recipients
   addRecipient() {
-    this.recipients.push({ name: '', email: '', role: 'signer' });
+    this.envelopeData.recipients.push({
+      routingOrder: this.envelopeData.recipients.length + 1,
+      type: 'Email',
+      recipientType: 'Signer',
+      value: ''
+    });
   }
-
-  // Remove Recipient
+ 
   removeRecipient(index: number) {
-    this.recipients.splice(index, 1);
+    this.envelopeData.recipients.splice(index, 1);
+  }
+ 
+  // Submit Envelope Data to Backend
+  submitEnvelope() {
+    const payload = {
+      title: this.envelopeData.title,
+      description: this.envelopeData.description,
+      documents: this.envelopeData.documents.map(doc => ({ name: doc.name })), // Only send names, file will be uploaded separately
+      customFields: this.envelopeData.customFields,
+      recipients: this.envelopeData.recipients
+    };
+ 
+    console.log('Envelope Data:', payload);
+    // Call backend API here (Example: this.http.post('API_URL', payload))
   }
 
-  // Save Draft
+  
   saveDraft() {
-    console.log('Saving draft...', this.envelope, this.uploadedDocs, this.recipients);
-  }
-
-  // Send Envelope
-  sendEnvelope() {
-    console.log('Sending envelope...', this.envelope, this.uploadedDocs, this.recipients);
+    console.log('Saving draft...', this.envelopeData);
   }
 }
