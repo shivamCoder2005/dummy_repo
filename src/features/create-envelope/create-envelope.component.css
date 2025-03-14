@@ -1,28 +1,33 @@
 .border-dashed {
-    border: 2px dashed #ccc;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .border-dashed:hover {
-    background-color: #f8f9fa;
-  }
-  
-  .container-fluid {
-    max-width: 98vw;  /* Utilizes entire screen width */
-    padding: 15px;
-  }
-  
-  .card {
-    height: 100%;
-    padding: 10px;
-  }
-  
-  .list-group-item {
-    font-size: 14px;
-  }
-  
-  .btn-sm {
-    font-size: 12px;
-  }
-  
+  border: 2px dashed #ccc;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.border-dashed:hover {
+  background-color: #f8f9fa;
+}
+
+.container-fluid {
+  max-width: 98vw;
+  /* Utilizes entire screen width */
+  padding: 15px;
+}
+
+.card {
+  height: 100%;
+  padding: 10px;
+}
+
+.list-group-item {
+  font-size: 14px;
+}
+
+.btn-sm {
+  font-size: 12px;
+}
+
+.no-radius {
+  border-radius: 0 !important;
+}
+
