@@ -9,9 +9,11 @@ import Constants from '../app/helper/Constants'
 })
 export class AuthService {
   
-  private baseUrl = this.getBaseUrl + '/api/auth';  // Update as needed
+  private baseUrl = '';  // Update as needed
 
-  constructor(private storageHelper: StorageHelper, private http: HttpClient, private constants: Constants) {}
+  constructor(private storageHelper: StorageHelper, private http: HttpClient, private constants: Constants) {
+    this.baseUrl = this.getBaseUrl() + '/api/auth'
+  }
 
   getBaseUrl (): String {
     return this.constants.getBaseURL();
@@ -76,3 +78,4 @@ export class AuthService {
     this.storageHelper.removeItem('token');
   }
 }
+
